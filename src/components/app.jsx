@@ -17,13 +17,19 @@ class App extends Component {
   }
 
   search = (query) => {
-    giphy('vnTZ7O4A1VON9uva7Mo1fXY6iZheXIyI').search({
-      q: query,
-      limit: 10,
-      rating: 'g'
-    }, (err, res) => {
-      this.setState({gifs: res.data})
-    });
+    const url = `https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&rating=g&api_key=vnTZ7O4A1VON9uva7Mo1fXY6iZheXIyI`
+      fetch(url)
+      .then(results => { return results.json();
+      }).then(data => {
+        this.setState({gifs: data.data});
+      });
+    // giphy('vnTZ7O4A1VON9uva7Mo1fXY6iZheXIyI').search({
+    //   q: query,
+    //   limit: 10,
+    //   rating: 'g'
+    // }, (err, res) => {
+    //   this.setState({gifs: res.data})
+    // });
   }
 
   select = (id) => {
