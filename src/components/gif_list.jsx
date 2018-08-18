@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 
+import Gif from './gif.jsx';
+
 class GifList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { id: "xBoysJgwhLEZtAjbY1" };
-  }
-
   render() {
-    const src = `https://media.giphy.com/media/${this.state.id}/giphy.gif`
-    return (
-    <div >
-      <img src={src} alt=""/>
-    </div>
-    );
+    return this.props.gifs.map(gif => {
+      return <Gif id={gif.id} key={gif.id} select={this.props.select}/>
+    });
+
   }
 }
 
