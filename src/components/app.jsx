@@ -17,12 +17,16 @@ class App extends Component {
   }
 
   search = (query) => {
-    const url = `https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&rating=g&api_key=vnTZ7O4A1VON9uva7Mo1fXY6iZheXIyI`
-      fetch(url)
-      .then(results => { return results.json();
-      }).then(data => {
-        this.setState({gifs: data.data});
+    giphy({ apiKey: "vnTZ7O4A1VON9uva7Mo1fXY6iZheXIyI", https: true })
+    .search({
+      q: query,
+      rating: 'g',
+      limit: 10
+    }, (err, result) => {
+      this.setState({
+        gifs: result.data
       });
+    });
   }
 
   select = (id) => {
@@ -34,15 +38,15 @@ class App extends Component {
     const gifs = this.state.gifs;
     return (
       <div>
-        <div className="left-scene">
-          <Search search={this.search}/>
-          <Gif id={this.state.gif} select={this.select}  />
-        </div>
-        <div className="right-scene">
-          <GifList gifs={gifs} select={this.select} />
-        </div>
+      <div className="left-scene">
+      <Search search={this.search}/>
+      <Gif id={this.state.gif} select={this.select}  />
       </div>
-    );
+      <div className="right-scene">
+      <GifList gifs={gifs} select={this.select} />
+      </div>
+      </div>
+      );
   }
 }
 
