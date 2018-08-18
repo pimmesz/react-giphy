@@ -23,13 +23,6 @@ class App extends Component {
       }).then(data => {
         this.setState({gifs: data.data});
       });
-    // giphy('vnTZ7O4A1VON9uva7Mo1fXY6iZheXIyI').search({
-    //   q: query,
-    //   limit: 10,
-    //   rating: 'g'
-    // }, (err, res) => {
-    //   this.setState({gifs: res.data})
-    // });
   }
 
   select = (id) => {
